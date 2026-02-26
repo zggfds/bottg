@@ -8,14 +8,14 @@ from firebase_admin import credentials, db
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-# --- НАСТРОЙКИ ---
-BOT_TOKEN = "8601680131:AAFUCQpeE-LgvpNiGtrqtNkD2EABfv9MP6Q"
-FIREBASE_KEY_PATH = "firebase-sdk.json"
-FIREBASE_URL = "https://qrcod-8ada6-default-rtdb.firebaseio.com/"
-# Ссылка на твой ПЕРВЫЙ сервис (сайт)
-SITE_URL = "https://siteprof.onrender.com/"
 
-# --- ДАННЫЕ КЛЮЧА ИЗ ВАШЕГО JSON ---
+# --- НАСТРОЙКИ ---
+BOT_TOKEN = "8601680131:AAGEnByhGyF2CPygt_mN_lpglwcyHbSNQDg"  # Вставь сюда токен от BotFather
+# URL базы данных для твоего проекта qrcod-8ada6
+FIREBASE_URL = "https://qrcod-8ada6-default-rtdb.firebaseio.com/" 
+SITE_URL = "https://ВАШ-САЙТ.onrender.com"
+
+# --- КОНФИГУРАЦИЯ ИЗ ТВОЕГО ФАЙЛА ---
 fb_config = {
   "type": "service_account",
   "project_id": "qrcod-8ada6",
@@ -26,11 +26,10 @@ fb_config = {
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
   "token_uri": "https://oauth2.googleapis.com/token",
   "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40qrcod-8ada6.iam.gserviceaccount.com",
-  "universe_domain": "googleapis.com"
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40qrcod-8ada6.iam.gserviceaccount.com"
 }
 
-# --- ИНИЦИАЛИЗАЦИЯ FIREBASE ---
+# --- ИНИЦИАЛИЗАЦИЯ ---
 if not firebase_admin._apps:
     cred = credentials.Certificate(fb_config)
     firebase_admin.initialize_app(cred, {'databaseURL': FIREBASE_URL})
@@ -39,25 +38,25 @@ auth_ref = db.reference('/auth_tokens')
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# --- МИНИ-СЕРВЕР ДЛЯ RENDER (ЗАГЛУШКА ПОРТА) ---
-class HealthCheckHandler(BaseHTTPRequestHandler):
+# --- МИНИ-СЕРВЕР ДЛЯ ПОРТА (ДЛЯ RENDER) ---
+class HealthHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
-        self.wfile.write(b"Bot is active")
+        self.wfile.write(b"OK")
 
-def run_health_server():
+def run_port_server():
     port = int(os.environ.get("PORT", 10000))
-    server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
+    server = HTTPServer(('0.0.0.0', port), HealthHandler)
     server.serve_forever()
 
-# --- ОБРАБОТЧИК КОМАНДЫ /START ---
+# --- ЛОГИКА ---
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
     token = secrets.token_urlsafe(16)
     try:
-        # Запись токена в Firebase
+        # Пытаемся записать токен в Firebase
         auth_ref.child(token).set({
             "uid": message.from_user.id,
             "name": message.from_user.first_name
@@ -65,20 +64,18 @@ async def cmd_start(message: types.Message):
         
         login_url = f"{SITE_URL}/auth/{token}"
         kb = InlineKeyboardBuilder()
-        kb.row(types.InlineKeyboardButton(text="ВХОД В ПРОФИЛЬ 🛡️", url=login_url))
+        kb.row(types.InlineKeyboardButton(text="ВХОД ✅", url=login_url))
+        await message.answer(f"Привет! Ссылка для входа:", reply_markup=kb.as_markup())
         
-        await message.answer(f"Привет, {message.from_user.first_name}! Ссылка готова:", reply_markup=kb.as_markup())
     except Exception as e:
-        print(f"Ошибка записи в Firebase: {e}")
-        await message.answer("Ошибка авторизации. Попробуйте позже.")
+        # Если здесь ошибка — она выведется в консоль Render
+        print(f"ОШИБКА FIREBASE: {e}")
+        await message.answer("Ошибка авторизации. Проверьте логи сервера.")
 
 async def main():
-    # Запуск сервера порта в отдельном потоке
-    threading.Thread(target=run_health_server, daemon=True).start()
-    
-    # Сброс вебхука и запуск бота
+    threading.Thread(target=run_port_server, daemon=True).start()
     await bot.delete_webhook(drop_pending_updates=True)
-    print("Бот успешно запущен!")
+    print("Бот запущен...")
     await dp.start_polling(bot, skip_updates=True)
 
 if __name__ == "__main__":

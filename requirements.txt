@@ -1,0 +1,4 @@
+flask
+aiogram
+firebase-admin
+gunicorn

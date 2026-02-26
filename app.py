@@ -7,7 +7,7 @@ from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 # --- НАСТРОЙКИ ---
-BOT_TOKEN = "8601680131:AAHQv3SpgjxAbNdB52B3kghcILT8n7H7UEc"
+BOT_TOKEN = "8601680131:AAEe6qFOIoCRs5U0cKkWTRU05l5X_PaFDjw"
 FIREBASE_KEY_PATH = "firebase-sdk.json"
 FIREBASE_URL = "https://qrcod-8ada6-default-rtdb.firebaseio.com/"
 # Ссылка на твой ПЕРВЫЙ сервис (сайт)

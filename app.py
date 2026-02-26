@@ -9,47 +9,18 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 # --- НАСТРОЙКИ ---
-BOT_TOKEN = "8601680131:AAGNLQW4vu_vrR7gCkEPqpZGDzLnkNOX5Is"
+BOT_TOKEN = "8601680131:AAFUCQpeE-LgvpNiGtrqtNkD2EABfv9MP6Q"
 FIREBASE_KEY_PATH = "firebase-sdk.json"
 FIREBASE_URL = "https://qrcod-8ada6-default-rtdb.firebaseio.com/"
 # Ссылка на твой ПЕРВЫЙ сервис (сайт)
 SITE_URL = "https://siteprof.onrender.com/"
 
-
-
-# --- ДАННЫЕ ИЗ ТВОЕГО ФАЙЛА КЛЮЧА ---
+# --- ДАННЫЕ КЛЮЧА ИЗ ВАШЕГО JSON ---
 fb_config = {
   "type": "service_account",
   "project_id": "qrcod-8ada6",
   "private_key_id": "71dab8fdc4862c544a0984e0ce777159f152ad72",
-  "private_key": "-----BEGIN PRIVATE KEY-----\n" + \
-                 "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDVwO7lNlOcw3zY\n" + \
-                 "aI84mbQe1Gxka0DVvY/cTpBUvXT5nyxL16lu1Kl+xwIwNNwwguF7eWCzkLmn72re\n" + \
-                 "jO3WrTLakrta9YDFxExbjE2NjLF6aAcl6KcfBzI0q0o8e8xYQUTLbFwObBA6ttyJ\n" + \
-                 "hGnCvQQMHnssvPXMGxg+1bzNmRdBxf6rnHZ6ZpQLUuoi7tJa2J+7WaBTrpPr3vfR\n" + \
-                 "DfNi66Vik0z7VEwT2lwrlCQQSKlE56sOacF8dSjV6LvjYkI8Fac85lvyqMA+ZsXO\n" + \
-                 "tVnbm80vdYOk2ynCP8/ZngDOphkz0ayPjO160preL/bxJ6StSt408mABz+ZPK44Y\n" + \
-                 "IPETOVgVAgMBAAECggEAQh0bJwU/JlEmt87bYZ/U4OZGImc0Fgg8S2F3beZtnFnZ\n" + \
-                 "uxmY2+FmDYLjT+LBqjWJJYY83T1p1yIL1YsUc159yLIyxecCbekRzw0d3abDLD+p\n" + \
-                 "2lVT/5pbsoO6geuuoCuL6jl5XbKZ8HcnzlcI2UVaT59L7OIDSp6kyKaWb6cm1N4m\n" + \
-                 "GCOyvOVZGJ2GFNw6UyEuiKf0UFAreIYGQ/Qtyogzycy7BpHevzuRqO393xDy8Zib\n" + \
-                 "Mi3MGgYYAYGcl4fdose7+RlL3Px2pdQLBl3bKBspaePSP53m5UPBV9vd5SYSAINl\n" + \
-                 "I1KKL1I9IV9QPxeCQPXYgvhtszGxGBflMNv9mHZVXwKBgQD7mOnIJlBeawYDs0K4\n" + \
-                 "CkKfkQWUrWZj5cmsICqKPOzhclTHIbU/l0XxUF0Aanex4wgYW956B5GDfrt3uqcA\n" + \
-                 "ccLj31n+VrqLSlskAilGvPYm9sQuzP+cNGwxakEFSvi3m7/e6DlRIYKGbfM1rdkG\n" + \
-                 "vbJkO5YhAsiRMlAUMWOVvHLouwKBgQDZfn2gljMRORY51Aa3A2VwePOT6+NSK6/I\n" + \
-                 "71cinjgFp4gLv02pir1JbUbAXnHWOulh2batAP0bHn09Rj8VrlhPe2m2Liwh5GU8\n" + \
-                 "7KvHrGSgrtK733b+LDa2ZCIaG77r2D7+txxge2GKUWDsZixOLTmMrITPEyRZyCwk\n" + \
-                 "O/wCwifdbwKBgBbA+oueY3BWj4GwKZ2JWAMkU3PhxrvMIVQOyKod3nJ5K4+izciF\n" + \
-                 "fs7XLMIH3vFYjffd/x3cJ13UDVJDsCzLHQwMvA/TeiV0wQ9dnqwGFODrOkzdP1S6\n" + \
-                 "LPq/GEhJQnsge9bF+8EJnctYkEFPiqwgZczI0sgDf24aNcHNwareEypXAoGBAMeF\n" + \
-                 "M4gS4ewl247XRAW2NuOUAZesaRBjhVImxl+6l5gQVUy5hWxIG1d1yNcGjRXDW3/p\n" + \
-                 "cpyI8KhlMuz4OT0RgHABvjtjZhb9aCYY04lMS8/gMPAqkwWe195AQ8yBsYa4DSos\n" + \
-                 "HvsflJ6IAws6u+BHuqijRv6UB9/ZMy1WXdzF8j4/AoGBAPlXuBwaAF/KdIZA1kKg\n" + \
-                 "GG5Zy905uanfXdM/F56mNciZXG+PoIwrAgSFZbiPRMA2/xdqR0Cw3xnK9Sh2eZXp\n" + \
-                 "zDexdMHmSFzeCr8bHYoFssmUecn4khFLXo3sq+ItZldItSPgsjPdjd90SEsp7WBt\n" + \
-                 "YScRCXKMUNgAfrmkjtECxdjg\n" + \
-                 "-----END PRIVATE KEY-----\n",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDVwO7lNlOcw3zY\naI84mbQe1Gxka0DVvY/cTpBUvXT5nyxL16lu1Kl+xwIwNNwwguF7eWCzkLmn72re\njO3WrTLakrta9YDFxExbjE2NjLF6aAcl6KcfBzI0q0o8e8xYQUTLbFwObBA6ttyJ\nhGnCvQQMHnssvPXMGxg+1bzNmRdBxf6rnHZ6ZpQLUuoi7tJa2J+7WaBTrpPr3vfR\nDfNi66Vik0z7VEwT2lwrlCQQSKlE56sOacF8dSjV6LvjYkI8Fac85lvyqMA+ZsXO\ntVnbm80vdYOk2ynCP8/ZngDOphkz0ayPjO160preL/bxJ6StSt408mABz+ZPK44Y\nIPETOVgVAgMBAAECggEAQh0bJwU/JlEmt87bYZ/U4OZGImc0Fgg8S2F3beZtnFnZ\nuxmY2+FmDYLjT+LBqjWJJYY83T1p1yIL1YsUc159yLIyxecCbekRzw0d3abDLD+p\n2lVT/5pbsoO6geuuoCuL6jl5XbKZ8HcnzlcI2UVaT59L7OIDSp6kyKaWb6cm1N4m\nGCOyvOVZGJ2GFNw6UyEuiKf0UFAreIYGQ/Qtyogzycy7BpHevzuRqO393xDy8Zib\nMi3MGgYYAYGcl4fdose7+RlL3Px2pdQLBl3bKBspaePSP53m5UPBV9vd5SYSAINl\nI1KKL1I9IV9QPxeCQPXYgvhtszGxGBflMNv9mHZVXwKBgQD7mOnIJlBeawYDs0K4\nCkKfkQWUrWZj5cmsICqKPOzhclTHIbU/l0XxUF0Aanex4wgYW956B5GDfrt3uqcA\nccLj31n+VrqLSlskAilGvPYm9sQuzP+cNGwxakEFSvi3m7/e6DlRIYKGbfM1rdkG\nvbJkO5YhAsiRMlAUMWOVvHLouwKBgQDZfn2gljMRORY51Aa3A2VwePOT6+NSK6/I\n71cinjgFp4gLv02pir1JbUbAXnHWOulh2batAP0bHn09Rj8VrlhPe2m2Liwh5GU8\n7KvHrGSgrtK733b+LDa2ZCIaG77r2D7+txxge2GKUWDsZixOLTmMrITPEyRZyCwk\nO/wCwifdbwKBgBbA+oueY3BWj4GwKZ2JWAMkU3PhxrvMIVQOyKod3nJ5K4+izciF\nfs7XLMIH3vFYjffd/x3cJ13UDVJDsCzLHQwMvA/TeiV0wQ9dnqwGFODrOkzdP1S6\nLPq/GEhJQnsge9bF+8EJnctYkEFPiqwgZczI0sgDf24aNcHNwareEypXAoGBAMeF\nM4gS4ewl247XRAW2NuOUAZesaRBjhVImxl+6l5gQVUy5hWxIG1d1yNcGjRXDW3/p\ncpyI8KhlMuz4OT0RgHABvjtjZhb9aCYY04lMS8/gMPAqkwWe195AQ8yBsYa4DSos\nHvsflJ6IAws6u+BHuqijRv6UB9/ZMy1WXdzF8j4/AoGBAPlXuBwaAF/KdIZA1kKg\nGG5Zy905uanfXdM/F56mNciZXG+PoIwrAgSFZbiPRMA2/xdqR0Cw3xnK9Sh2eZXp\nzDexdMHmSFzeCr8bHYoFssmUecn4khFLXo3sq+ItZldItSPgsjPdjd90SEsp7WBt\nYScRCXKMUNgAfrmkjtECxdjg\n-----END PRIVATE KEY-----\n",
   "client_email": "firebase-adminsdk-fbsvc@qrcod-8ada6.iam.gserviceaccount.com",
   "client_id": "102545588320138654247",
   "auth_uri": "https://accounts.google.com/o/oauth2/auth",
@@ -59,7 +30,7 @@ fb_config = {
   "universe_domain": "googleapis.com"
 }
 
-# --- ИНИЦИАЛИЗАЦИЯ ---
+# --- ИНИЦИАЛИЗАЦИЯ FIREBASE ---
 if not firebase_admin._apps:
     cred = credentials.Certificate(fb_config)
     firebase_admin.initialize_app(cred, {'databaseURL': FIREBASE_URL})
@@ -68,7 +39,7 @@ auth_ref = db.reference('/auth_tokens')
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
-# --- МИНИ-СЕРВЕР ДЛЯ RENDER (ЧТОБЫ НЕ БЫЛО ОШИБКИ PORT) ---
+# --- МИНИ-СЕРВЕР ДЛЯ RENDER (ЗАГЛУШКА ПОРТА) ---
 class HealthCheckHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
@@ -81,13 +52,12 @@ def run_health_server():
     server = HTTPServer(('0.0.0.0', port), HealthCheckHandler)
     server.serve_forever()
 
-# --- КОМАНДЫ ---
+# --- ОБРАБОТЧИК КОМАНДЫ /START ---
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
     token = secrets.token_urlsafe(16)
-    
     try:
-        # Пишем в Firebase
+        # Запись токена в Firebase
         auth_ref.child(token).set({
             "uid": message.from_user.id,
             "name": message.from_user.first_name
@@ -97,18 +67,18 @@ async def cmd_start(message: types.Message):
         kb = InlineKeyboardBuilder()
         kb.row(types.InlineKeyboardButton(text="ВХОД В ПРОФИЛЬ 🛡️", url=login_url))
         
-        await message.answer(f"Привет, {message.from_user.first_name}! Ссылка для входа:", reply_markup=kb.as_markup())
+        await message.answer(f"Привет, {message.from_user.first_name}! Ссылка готова:", reply_markup=kb.as_markup())
     except Exception as e:
-        print(f"Ошибка DB: {e}")
-        await message.answer("Ошибка связи с базой данных.")
+        print(f"Ошибка записи в Firebase: {e}")
+        await message.answer("Ошибка авторизации. Попробуйте позже.")
 
 async def main():
-    # Запускаем заглушку порта
+    # Запуск сервера порта в отдельном потоке
     threading.Thread(target=run_health_server, daemon=True).start()
     
-    # Сброс вебхука и запуск поллинга
+    # Сброс вебхука и запуск бота
     await bot.delete_webhook(drop_pending_updates=True)
-    print("Бот запущен...")
+    print("Бот успешно запущен!")
     await dp.start_polling(bot, skip_updates=True)
 
 if __name__ == "__main__":

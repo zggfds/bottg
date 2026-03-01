@@ -13,7 +13,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 BOT_TOKEN = "8601680131:AAEoJSyfjO8Dd2MMc4jBoNPFaxyTIM1JUd0"  # Вставь сюда токен от BotFather
 # URL базы данных для твоего проекта qrcod-8ada6
 FIREBASE_URL = "https://qrcod-8ada6-default-rtdb.firebaseio.com/" 
-SITE_URL = "https://siteprof.onrender.com"
+SITE_URL = "https://tissuuuu.pythonanywhere.com/"
 
 
 # --- УНИВЕРСАЛЬНЫЙ ПУТЬ К КЛЮЧУ ---
